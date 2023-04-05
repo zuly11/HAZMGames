@@ -43,7 +43,7 @@ const App = () => {
       fetch("/api/auth/", {
         method: "GET",
         headers: {
-          authorization: token,
+        authorization: token,
         },
       })
         .then((response) => response.json())
@@ -154,7 +154,8 @@ const App = () => {
       })
         .then((response) => response.json())
         .then((user) => {
-          setUserDetails(user), setAuth(user);
+          setUserDetails(user), 
+          setAuth(user);
         });
     }
   };

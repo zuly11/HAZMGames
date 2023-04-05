@@ -1,6 +1,7 @@
 import React from "react";
 import { useParams, link } from "react-router-dom";
 import { useEffect, useState } from "react";
+import Modal from "./modal/Modal";
 
 const addProductToCart = async (productId) => {
   const token = window.localStorage.getItem("token");
@@ -30,8 +31,8 @@ const SingleProduct = ({ setCart, updatedCart }) => {
   }, []);
 
   function areYouSure() {
-    alert("Game added to Cart");
-  }
+    alert(`${singleProduct.name} was added to Cart`);
+}
 
   return (
     <div className="single-game-container">
@@ -46,18 +47,26 @@ const SingleProduct = ({ setCart, updatedCart }) => {
         <p>Condition: {singleProduct.condition}</p>
         <p>{singleProduct.onSale}</p>
         <button
-          className="addtocartBtn"
-          onClick={async () => {
+            className="addtocartBtn"
+            onClick={async () => {
             const updatedCart = await addProductToCart(singleProduct.id);
             areYouSure();
             setCart(updatedCart);
+            Modal();
           }}
         >
           Add to Cart
         </button>
+
+       <><Modal />
+        </>
+
       </div>
     </div>
   );
 };
 
+
+
 export default SingleProduct;
+
